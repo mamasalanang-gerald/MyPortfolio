@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import shared styles */
+@use 'app/shared/styles/variables' as *;
+@use 'app/shared/styles/mixins' as *;
+@use 'app/shared/styles/animations';
+
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text-primary;
+  background-color: $color-bg-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-text-primary;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+  
+  @include desktop {
+    font-size: $font-size-6xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-3xl;
+  
+  @include desktop {
+    font-size: $font-size-4xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-2xl;
+}
+
+p {
+  margin-bottom: $spacing-4;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $color-primary-dark;
+  }
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lists */
+ul, ol {
+  list-style: none;
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: $color-primary;
+  color: $color-text-inverse;
+}
+
+/* Utility Classes */
+.container {
+  @include container;
+}
+
+.sr-only {
+  @include visually-hidden;
+}

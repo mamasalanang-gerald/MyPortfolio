@@ -1,0 +1,53 @@
+<footer class="footer" role="contentinfo" aria-label="Site footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <a href="#home" class="footer-logo" (click)="scrollToSection('home'); $event.preventDefault()" aria-label="Go to home section">
+          {{ profile.name }}
+        </a>
+        <p class="footer-tagline">{{ profile.tagline }}</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <h2 class="footer-nav-title">Quick Links</h2>
+        <ul class="footer-links" role="list">
+          @for (link of footerLinks; track link.sectionId) {
+            <li>
+              <a 
+                [href]="'#' + link.sectionId" 
+                class="footer-link"
+                (click)="scrollToSection(link.sectionId); $event.preventDefault()"
+                [attr.aria-label]="'Navigate to ' + link.label + ' section'">
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="footer-social" aria-label="Social media links">
+        <h2 class="footer-nav-title">Connect</h2>
+        <ul class="social-links" role="list">
+          @for (social of profile.socialLinks; track social.platform) {
+            <li>
+              <a 
+                [href]="social.url" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="social-link"
+                [attr.aria-label]="'Visit ' + social.platform + ' profile (opens in new tab)'">
+                {{ social.platform }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        &copy; {{ currentYear }} {{ profile.name }}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

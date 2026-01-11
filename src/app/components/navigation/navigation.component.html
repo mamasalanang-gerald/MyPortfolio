@@ -1,0 +1,65 @@
+<nav class="navigation" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a class="nav-logo" href="#home" (click)="navigateToSection('home'); $event.preventDefault()">
+      Portfolio
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="nav-links desktop-nav" role="menubar">
+      @for (item of navigationItems; track item.id) {
+        <li role="none">
+          <a
+            [href]="'#' + item.id"
+            role="menuitem"
+            class="nav-link"
+            [class.active]="isActive(item.id)"
+            [attr.aria-current]="isActive(item.id) ? 'page' : null"
+            (click)="navigateToSection(item.id); $event.preventDefault()"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      class="hamburger-btn"
+      type="button"
+      [class.open]="isMobileMenuOpen"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation menu"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Mobile Navigation -->
+    <div
+      id="mobile-menu"
+      class="mobile-nav"
+      [class.open]="isMobileMenuOpen"
+      [attr.aria-hidden]="!isMobileMenuOpen"
+    >
+      <ul class="nav-links" role="menubar">
+        @for (item of navigationItems; track item.id) {
+          <li role="none">
+            <a
+              [href]="'#' + item.id"
+              role="menuitem"
+              class="nav-link"
+              [class.active]="isActive(item.id)"
+              [attr.aria-current]="isActive(item.id) ? 'page' : null"
+              (click)="navigateToSection(item.id); $event.preventDefault()"
+            >
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

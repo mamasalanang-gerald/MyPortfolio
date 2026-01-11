@@ -1,0 +1,16 @@
+<section class="projects" id="projects" aria-labelledby="projects-heading">
+  <div class="projects__container">
+    <h2 id="projects-heading" class="projects__heading">My Projects</h2>
+    <p class="projects__subtitle">A selection of work I've done recently</p>
+    
+    <div class="projects__grid">
+      @for (project of projects; track project.id) {
+        <app-project-card [project]="project"></app-project-card>
+      }
+    </div>
+    
+    @if (projects.length === 0) {
+      <p class="projects__empty">No projects available at the moment.</p>
+    }
+  </div>
+</section>

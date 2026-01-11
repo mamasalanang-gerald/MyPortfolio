@@ -1,0 +1,163 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.hero {
+  min-height: 100vh;
+  @include flex-center;
+  @include flex-column;
+  position: relative;
+  background: linear-gradient(135deg, $color-bg-primary 0%, $color-bg-secondary 100%);
+  padding: $spacing-16 $container-padding;
+  text-align: center;
+
+  @include desktop {
+    padding: $spacing-24 $container-padding;
+  }
+
+  &__content {
+    max-width: 800px;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  &__name {
+    @include heading-1;
+    & {
+      color: $color-text-primary;
+      margin-bottom: $spacing-4;
+    }
+    
+    @include desktop {
+      margin-bottom: $spacing-6;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $color-primary;
+    margin-bottom: $spacing-4;
+    
+    @include desktop {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__tagline {
+    @include body-text;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-8;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @include desktop {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-10;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    align-items: center;
+    
+    @include min-width($breakpoint-sm) {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  &__cta {
+    @include button-base;
+    min-width: 180px;
+    padding: $spacing-4 $spacing-8;
+    font-size: $font-size-base;
+    
+    @include desktop {
+      min-width: 200px;
+      padding: $spacing-4 $spacing-10;
+    }
+
+    &--primary {
+      background-color: $color-primary;
+      color: $color-text-inverse;
+      
+      &:hover {
+        background-color: $color-primary-dark;
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+      }
+    }
+
+    &--secondary {
+      background-color: transparent;
+      color: $color-primary;
+      border: 2px solid $color-primary;
+      
+      &:hover {
+        background-color: $color-primary;
+        color: $color-text-inverse;
+        transform: translateY(-2px);
+      }
+    }
+
+    @include focus-ring;
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: $spacing-8;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flex-column;
+    align-items: center;
+    gap: $spacing-2;
+    animation: fadeIn 1s ease-out 0.5s both;
+  }
+
+  &__scroll-text {
+    @include small-text;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, $color-text-muted, transparent);
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+}

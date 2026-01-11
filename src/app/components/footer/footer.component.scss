@@ -1,0 +1,123 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.footer {
+  background-color: $color-bg-dark;
+  color: $color-text-inverse;
+  padding: $spacing-16 0 $spacing-8;
+}
+
+.footer-container {
+  @include container;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-10;
+  padding-bottom: $spacing-10;
+  border-bottom: 1px solid rgba($color-text-inverse, 0.1);
+
+  @include tablet {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  @include desktop {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  display: inline-block;
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-inverse;
+  text-decoration: none;
+  margin-bottom: $spacing-3;
+  transition: color $transition-fast;
+  @include focus-ring;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+}
+
+.footer-tagline {
+  @include small-text;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+.footer-nav-title {
+  font-family: $font-family-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-inverse;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 $spacing-4;
+}
+
+.footer-links,
+.social-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-link,
+.social-link {
+  display: inline-block;
+  @include small-text;
+  color: $color-text-muted;
+  text-decoration: none;
+  padding: $spacing-1 0;
+  transition: color $transition-fast;
+  @include focus-ring;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+}
+
+.footer-links li,
+.social-links li {
+  margin-bottom: $spacing-2;
+}
+
+.footer-bottom {
+  padding-top: $spacing-8;
+  text-align: center;
+}
+
+.copyright {
+  @include small-text;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+// Mobile adjustments
+@include mobile {
+  .footer {
+    padding: $spacing-10 0 $spacing-6;
+  }
+
+  .footer-content {
+    gap: $spacing-8;
+    text-align: center;
+  }
+
+  .footer-brand {
+    max-width: none;
+  }
+
+  .footer-nav,
+  .footer-social {
+    text-align: center;
+  }
+}

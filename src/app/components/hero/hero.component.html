@@ -1,0 +1,27 @@
+<section class="hero" id="home" aria-labelledby="hero-heading">
+  <div class="hero__content">
+    <h1 id="hero-heading" class="hero__name">{{ profile.name }}</h1>
+    <p class="hero__title" role="doc-subtitle">{{ profile.title }}</p>
+    <p class="hero__tagline">{{ profile.tagline }}</p>
+    
+    <div class="hero__actions" role="group" aria-label="Call to action buttons">
+      <button 
+        class="hero__cta hero__cta--primary" 
+        (click)="scrollToProjects()"
+        aria-label="View my projects">
+        View My Work
+      </button>
+      <button 
+        class="hero__cta hero__cta--secondary" 
+        (click)="scrollToContact()"
+        aria-label="Get in touch with me">
+        Get In Touch
+      </button>
+    </div>
+  </div>
+  
+  <div class="hero__scroll-indicator" aria-hidden="true">
+    <span class="hero__scroll-text">Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>

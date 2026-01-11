@@ -1,0 +1,149 @@
+<section class="contact" id="contact" aria-labelledby="contact-heading">
+  <div class="contact__container">
+    <h2 id="contact-heading" class="contact__title">Get In Touch</h2>
+    <p class="contact__subtitle">Have a question or want to work together? Feel free to reach out!</p>
+    
+    <div class="contact__content">
+      <!-- Contact Information -->
+      <div class="contact__info" role="region" aria-labelledby="contact-info-heading">
+        <div class="contact__info-card">
+          <h3 id="contact-info-heading" class="contact__info-title">Contact Information</h3>
+          
+          <div class="contact__email-section">
+            <span class="contact__label" id="email-label">Email</span>
+            <a 
+              [href]="'mailto:' + email" 
+              class="contact__email"
+              aria-labelledby="email-label"
+              [attr.aria-label]="'Send email to ' + email"
+            >
+              {{ email }}
+            </a>
+          </div>
+          
+          @if (socialLinks.length > 0) {
+            <div class="contact__social-section">
+              <span class="contact__label" id="social-label">Connect with me</span>
+              <ul class="contact__social-list" role="list" aria-labelledby="social-label">
+                @for (link of socialLinks; track link.platform) {
+                  <li class="contact__social-item">
+                    <a 
+                      [href]="link.url" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="contact__social-link"
+                      [attr.aria-label]="'Visit my ' + link.platform + ' profile (opens in new tab)'"
+                      [attr.data-platform]="link.platform.toLowerCase()"
+                    >
+                      <span class="contact__social-icon" aria-hidden="true">{{ link.icon }}</span>
+                      <span class="contact__social-name">{{ link.platform }}</span>
+                    </a>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+      </div>
+      
+      <!-- Contact Form -->
+      <div class="contact__form-wrapper" role="region" aria-labelledby="contact-form-heading">
+        <h3 id="contact-form-heading" class="sr-only">Contact Form</h3>
+        <form 
+          [formGroup]="contactForm" 
+          (ngSubmit)="onSubmit()" 
+          class="contact__form"
+          novalidate
+          aria-label="Contact form"
+        >
+          @if (formSuccess) {
+            <div class="contact__success" role="alert" aria-live="polite">
+              <span class="contact__success-icon" aria-hidden="true">✓</span>
+              Thank you for your message! I'll get back to you soon.
+            </div>
+          }
+          
+          <div class="contact__form-group">
+            <label for="name" class="contact__form-label">Name <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name"
+              class="contact__form-input"
+              [class.contact__form-input--error]="formSubmitted && nameControl?.invalid"
+              placeholder="Your name"
+              [attr.aria-invalid]="formSubmitted && nameControl?.invalid"
+              aria-describedby="name-error"
+              autocomplete="name"
+            />
+            @if (formSubmitted && nameControl?.invalid) {
+              <span id="name-error" class="contact__form-error" role="alert" aria-live="assertive">
+                @if (nameControl?.errors?.['required']) {
+                  Name is required
+                } @else if (nameControl?.errors?.['minlength']) {
+                  Name must be at least 2 characters
+                }
+              </span>
+            }
+          </div>
+          
+          <div class="contact__form-group">
+            <label for="email" class="contact__form-label">Email <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+            <input 
+              type="email" 
+              id="email" 
+              formControlName="email"
+              class="contact__form-input"
+              [class.contact__form-input--error]="formSubmitted && emailControl?.invalid"
+              placeholder="your.email@example.com"
+              [attr.aria-invalid]="formSubmitted && emailControl?.invalid"
+              aria-describedby="email-error"
+              autocomplete="email"
+            />
+            @if (formSubmitted && emailControl?.invalid) {
+              <span id="email-error" class="contact__form-error" role="alert" aria-live="assertive">
+                @if (emailControl?.errors?.['required']) {
+                  Email is required
+                } @else if (emailControl?.errors?.['email']) {
+                  Please enter a valid email address
+                }
+              </span>
+            }
+          </div>
+          
+          <div class="contact__form-group">
+            <label for="message" class="contact__form-label">Message <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+            <textarea 
+              id="message" 
+              formControlName="message"
+              class="contact__form-textarea"
+              [class.contact__form-textarea--error]="formSubmitted && messageControl?.invalid"
+              placeholder="Your message..."
+              rows="5"
+              [attr.aria-invalid]="formSubmitted && messageControl?.invalid"
+              aria-describedby="message-error"
+            ></textarea>
+            @if (formSubmitted && messageControl?.invalid) {
+              <span id="message-error" class="contact__form-error" role="alert" aria-live="assertive">
+                @if (messageControl?.errors?.['required']) {
+                  Message is required
+                } @else if (messageControl?.errors?.['minlength']) {
+                  Message must be at least 10 characters
+                }
+              </span>
+            }
+          </div>
+          
+          <button 
+            type="submit" 
+            class="contact__form-submit"
+            [disabled]="formSubmitted && contactForm.invalid"
+            [attr.aria-disabled]="formSubmitted && contactForm.invalid"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
