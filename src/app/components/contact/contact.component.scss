@@ -13,12 +13,12 @@
     color: $color-text-primary;
     text-align: center;
     margin-bottom: $spacing-4;
-    @include heading-2;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: fadeInDown 0.6s ease-out;
+    @include heading-2;
   }
 
   &__subtitle {
@@ -28,8 +28,8 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    @include body-text;
     animation: fadeIn 0.6s ease-out 0.2s both;
+    @include body-text;
   }
 
   &__content {
@@ -70,8 +70,8 @@
   }
 
   &__info-title {
-    color: $color-text-primary;
     margin-bottom: $spacing-6;
+    color: $color-text-primary;
     @include heading-3;
   }
 
@@ -200,6 +200,19 @@
     @include body-text;
   }
 
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    padding: $spacing-4;
+    background: linear-gradient(135deg, rgba($color-error, 0.1) 0%, rgba($color-error, 0.05) 100%);
+    border: 1px solid $color-error;
+    border-radius: $radius-lg;
+    color: $color-error;
+    margin-bottom: $spacing-6;
+    @include body-text;
+  }
+
   &__success-icon {
     display: flex;
     align-items: center;
@@ -207,6 +220,19 @@
     width: 24px;
     height: 24px;
     background-color: $color-success;
+    color: $color-text-inverse;
+    border-radius: $radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+  }
+
+  &__error-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: $color-error;
     color: $color-text-inverse;
     border-radius: $radius-full;
     font-size: $font-size-sm;

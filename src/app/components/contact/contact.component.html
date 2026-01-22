@@ -63,6 +63,13 @@
             </div>
           }
           
+          @if (formError) {
+            <div class="contact__error" role="alert" aria-live="assertive">
+              <span class="contact__error-icon" aria-hidden="true">✕</span>
+              Failed to send message. Please try again later.
+            </div>
+          }
+          
           <div class="contact__form-group">
             <label for="name" class="contact__form-label">Name <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
             <input 
@@ -137,10 +144,10 @@
           <button 
             type="submit" 
             class="contact__form-submit"
-            [disabled]="formSubmitted && contactForm.invalid"
-            [attr.aria-disabled]="formSubmitted && contactForm.invalid"
+            [disabled]="(formSubmitted && contactForm.invalid) || isSubmitting"
+            [attr.aria-disabled]="(formSubmitted && contactForm.invalid) || isSubmitting"
           >
-            Send Message
+            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
           </button>
         </form>
       </div>

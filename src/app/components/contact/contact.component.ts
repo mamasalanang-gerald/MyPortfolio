@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Profile, SocialLink } from '../../models/profile.model';
 import { PROFILE_DATA } from '../../data/profile.data';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,8 +18,10 @@ export class ContactComponent {
   contactForm: FormGroup;
   formSubmitted = false;
   formSuccess = false;
+  formError = false;
+  isSubmitting = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private emailService: EmailService) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -64,16 +67,31 @@ export class ContactComponent {
     this.formSubmitted = true;
     
     if (this.contactForm.valid) {
-      // In a real application, this would send the form data to a backend
-      console.log('Form submitted:', this.contactForm.value);
-      this.formSuccess = true;
-      this.contactForm.reset();
-      this.formSubmitted = false;
+      this.isSubmitting = true;
+      this.formError = false;
       
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        this.formSuccess = false;
-      }, 5000);
+      this.emailService.sendContactEmail(this.contactForm.value, this.profile.email)
+        .then((response) => {
+          this.formSuccess = true;
+          this.contactForm.reset();
+          this.formSubmitted = false;
+          this.isSubmitting = false;
+          
+          // Reset success message after 5 seconds
+          setTimeout(() => {
+            this.formSuccess = false;
+          }, 5000);
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+          this.formError = true;
+          this.isSubmitting = false;
+          
+          // Reset error message after 5 seconds
+          setTimeout(() => {
+            this.formError = false;
+          }, 5000);
+        });
     }
   }
 }

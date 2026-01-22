@@ -10,22 +10,18 @@
   }
 
   &__heading {
+    text-align: center;
+    color: $color-text-primary;
+    margin-bottom: $spacing-3;
+    animation: fadeInDown 0.6s ease-out;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     @include heading-2;
-
-    & {
-      text-align: center;
-      color: $color-text-primary;
-      margin-bottom: $spacing-3;
-      animation: fadeInDown 0.6s ease-out;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
   }
 
   &__subtitle {
-    @include body-text;
     text-align: center;
     color: $color-text-secondary;
     margin-bottom: $spacing-12;
@@ -34,6 +30,7 @@
     margin-right: auto;
     animation: fadeIn 0.6s ease-out 0.2s both;
     line-height: $line-height-relaxed;
+    @include body-text;
   }
 
   &__grid {
@@ -62,10 +59,10 @@
   }
 
   &__empty {
-    @include body-text;
     text-align: center;
     color: $color-text-muted;
     padding: $spacing-12;
     animation: fadeIn 0.6s ease-out;
+    @include body-text;
   }
 }

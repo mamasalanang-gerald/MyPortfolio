@@ -1,19 +1,14 @@
 import { Profile } from '../models/profile.model';
 
 export const PROFILE_DATA: Profile = {
-  name: 'John Doe',
-  title: 'Full Stack Developer',
-  tagline: 'Building modern web experiences with passion and precision',
-  bio: `I'm a passionate full-stack developer with over 5 years of experience 
-creating elegant, efficient, and user-friendly web applications. I specialize 
-in Angular, React, and Node.js, with a strong foundation in TypeScript and 
-modern development practices.
+  name: 'Gerald Mamasalanang',
+  title: 'Aspiring DevOps & Cybersecurity Engineer',
+  tagline: 'Securing infrastructure and automating deployments with precision',
+  bio: `I'm a 3rd year Diploma in Information Technology student at Polytechnic University of the Philippines Taguig Campus. I'm passionate about DevOps and Cybersecurity, with a focus on building secure, scalable infrastructure and mastering cloud technologies, containerization, and security best practices.
 
-When I'm not coding, you can find me exploring new technologies, contributing 
-to open-source projects, or sharing knowledge through technical writing and 
-mentoring.`,
+I'm committed to continuous learning and hands-on experience in infrastructure automation, system security, and cloud platforms to become a skilled DevOps and Cybersecurity professional.`,
   photoUrl: 'assets/images/profile.jpg',
-  email: 'john.doe@example.com',
+  email: 'geraldkasan163@gmail.com',
   skills: [
     { name: 'Angular', category: 'frontend', icon: 'angular' },
     { name: 'React', category: 'frontend', icon: 'react' },
@@ -21,9 +16,12 @@ mentoring.`,
     { name: 'HTML/CSS', category: 'frontend', icon: 'html5' },
     { name: 'SCSS', category: 'frontend', icon: 'sass' },
     { name: 'Node.js', category: 'backend', icon: 'nodejs' },
-    { name: 'Express', category: 'backend', icon: 'express' },
+    { name: 'Java', category: 'backend', icon: 'java' },
+    { name: 'Spring Boot', category: 'backend', icon: 'spring' },
+    { name: 'PHP', category: 'backend', icon: 'php' },
+    { name: 'Laravel', category: 'backend', icon: 'laravel' },
+    { name: 'Python', category: 'backend', icon: 'python' },
     { name: 'PostgreSQL', category: 'backend', icon: 'postgresql' },
-    { name: 'MongoDB', category: 'backend', icon: 'mongodb' },
     { name: 'Git', category: 'tools', icon: 'git' },
     { name: 'Docker', category: 'tools', icon: 'docker' },
     { name: 'AWS', category: 'tools', icon: 'aws' },
@@ -31,8 +29,7 @@ mentoring.`,
     { name: 'Agile/Scrum', category: 'other', icon: 'agile' }
   ],
   socialLinks: [
-    { platform: 'GitHub', url: 'https://github.com/johndoe', icon: 'github' },
-    { platform: 'LinkedIn', url: 'https://linkedin.com/in/johndoe', icon: 'linkedin' },
-    { platform: 'Twitter', url: 'https://twitter.com/johndoe', icon: 'twitter' }
+    { platform: 'GitHub', url: 'https://github.com/mamasalanang-gerald', icon: 'github' },
+    { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/gerald-kasan-mamasalanang-95a306386/', icon: 'linkedin' }
   ]
 };
