@@ -25,6 +25,7 @@ body {
   background-color: $color-bg-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -65,7 +66,7 @@ a {
   transition: color $transition-fast;
   
   &:hover {
-    color: $color-primary-dark;
+    color: $color-secondary;
   }
 }
 
@@ -95,8 +96,30 @@ button {
 
 /* Selection */
 ::selection {
-  background-color: $color-primary;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: $color-text-inverse;
+}
+
+/* Performance Optimizations */
+/* Use GPU acceleration for animated elements */
+[appScrollAnimate],
+[appParallax] {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Utility Classes */

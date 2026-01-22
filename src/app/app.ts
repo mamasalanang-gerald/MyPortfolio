@@ -5,6 +5,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ScrollAnimateDirective } from './directives/scroll-animate.directive';
+import { ParallaxDirective } from './directives/parallax.directive';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,9 @@ import { FooterComponent } from './components/footer/footer.component';
     AboutComponent,
     ProjectsComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    ScrollAnimateDirective,
+    ParallaxDirective
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

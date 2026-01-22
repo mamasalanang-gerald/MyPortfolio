@@ -87,3 +87,36 @@ A personal portfolio website to showcase professional work, skills, and experien
 2. THE Portfolio SHALL use semantic HTML elements for proper accessibility
 3. THE Portfolio SHALL provide appropriate alt text for all images
 4. THE Portfolio SHALL support keyboard navigation for all interactive elements
+
+### Requirement 8: Enhanced Visual Design
+
+**User Story:** As a visitor, I want the portfolio to have a modern, visually appealing design, so that I'm impressed by the owner's attention to detail and design sensibility.
+
+#### Acceptance Criteria
+
+1. WHEN viewing the portfolio THEN the design SHALL feature modern gradients and color transitions
+2. WHEN viewing interactive elements THEN the system SHALL provide smooth hover effects and visual feedback
+3. WHEN viewing project cards THEN the system SHALL display glassmorphism or card elevation effects
+4. WHEN scrolling through sections THEN the system SHALL maintain visual consistency and hierarchy
+
+### Requirement 9: Interactive Animations
+
+**User Story:** As a visitor, I want smooth animations and transitions, so that the portfolio feels polished and engaging.
+
+#### Acceptance Criteria
+
+1. WHEN a section comes into view THEN the system SHALL animate elements with entrance animations
+2. WHEN hovering over interactive elements THEN the system SHALL provide immediate visual feedback
+3. WHEN scrolling THEN the system SHALL apply parallax or scroll-triggered effects to enhance depth
+4. WHEN transitioning between sections THEN the system SHALL use smooth, non-jarring animations
+
+### Requirement 10: Improved User Experience
+
+**User Story:** As a visitor, I want clear visual hierarchy and intuitive interactions, so that I can easily understand and navigate the portfolio.
+
+#### Acceptance Criteria
+
+1. WHEN viewing the portfolio THEN the system SHALL use consistent spacing and alignment
+2. WHEN interacting with buttons THEN the system SHALL provide clear, animated feedback
+3. WHEN viewing project information THEN the system SHALL present information in a scannable format
+4. WHEN on mobile devices THEN the system SHALL maintain all interactive features with touch-friendly sizing

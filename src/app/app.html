@@ -4,19 +4,19 @@
 <app-navigation></app-navigation>
 
 <main id="main-content" class="main-content" role="main" aria-label="Main content">
-  <section id="home" class="section" aria-label="Home">
+  <section id="home" class="section" aria-label="Home" [appParallax]="0.3" [maxOffset]="80">
     <app-hero></app-hero>
   </section>
 
-  <section id="about" class="section" aria-label="About">
+  <section id="about" class="section" aria-label="About" appScrollAnimate="fadeInUp" [animationDelay]="0">
     <app-about></app-about>
   </section>
 
-  <section id="projects" class="section" aria-label="Projects">
+  <section id="projects" class="section" aria-label="Projects" appScrollAnimate="fadeInUp" [animationDelay]="100">
     <app-projects></app-projects>
   </section>
 
-  <section id="contact" class="section" aria-label="Contact">
+  <section id="contact" class="section" aria-label="Contact" appScrollAnimate="fadeInUp" [animationDelay]="200">
     <app-contact></app-contact>
   </section>
 </main>

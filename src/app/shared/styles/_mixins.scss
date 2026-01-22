@@ -64,9 +64,11 @@
   font-size: $font-size-4xl;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
+  letter-spacing: -0.5px;
   
   @include desktop {
     font-size: $font-size-6xl;
+    letter-spacing: -1px;
   }
 }
 
@@ -75,17 +77,20 @@
   font-size: $font-size-3xl;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
+  letter-spacing: -0.25px;
   
   @include desktop {
     font-size: $font-size-4xl;
+    letter-spacing: -0.5px;
   }
 }
 
 @mixin heading-3 {
   font-family: $font-family-heading;
   font-size: $font-size-2xl;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
   line-height: $line-height-tight;
+  letter-spacing: -0.25px;
 }
 
 @mixin body-text {
@@ -93,6 +98,7 @@
   font-size: $font-size-base;
   font-weight: $font-weight-normal;
   line-height: $line-height-relaxed;
+  letter-spacing: 0.3px;
 }
 
 @mixin small-text {
@@ -100,6 +106,7 @@
   font-size: $font-size-sm;
   font-weight: $font-weight-normal;
   line-height: $line-height-normal;
+  letter-spacing: 0.2px;
 }
 
 // Button Mixins
@@ -110,38 +117,56 @@
   padding: $spacing-3 $spacing-6;
   font-family: $font-family-base;
   font-size: $font-size-base;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-semibold;
   border-radius: $radius-lg;
   cursor: pointer;
   transition: all $transition-fast;
   text-decoration: none;
   border: none;
+  min-height: 44px;
+  min-width: 44px;
   
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
 }
 
 @mixin button-primary {
   @include button-base;
-  background-color: $color-primary;
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
   color: $color-text-inverse;
+  box-shadow: 0 4px 15px rgba($color-primary, 0.3);
   
   &:hover:not(:disabled) {
-    background-color: $color-primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba($color-primary, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
   }
 }
 
 @mixin button-secondary {
   @include button-base;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.1);
   color: $color-primary;
   border: 2px solid $color-primary;
+  backdrop-filter: blur(10px);
   
   &:hover:not(:disabled) {
-    background-color: $color-primary;
-    color: $color-text-inverse;
+    background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-secondary, 0.1) 100%);
+    border-color: $color-secondary;
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
   }
 }
 
@@ -161,10 +186,14 @@
 
 // Section Mixin
 @mixin section {
-  padding: $spacing-16 0;
+  padding: $spacing-24 $container-padding;
   
-  @include desktop {
-    padding: $spacing-24 0;
+  @include tablet {
+    padding: $spacing-20 $container-padding;
+  }
+  
+  @include mobile {
+    padding: $spacing-16 $container-padding;
   }
 }
 

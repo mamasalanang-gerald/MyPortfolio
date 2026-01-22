@@ -7,11 +7,39 @@
   flex-direction: column;
   height: 100%;
   background-color: $color-bg-primary;
+  border: 1px solid $color-border;
+  transition: all $transition-normal;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    opacity: 0;
+    transition: opacity $transition-normal;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+    border-color: rgba(102, 126, 234, 0.2);
+
+    &::before {
+      opacity: 1;
+    }
+  }
 
   &__thumbnail {
     position: relative;
     aspect-ratio: 16 / 10;
     overflow: hidden;
+    background: linear-gradient(135deg, $color-bg-secondary 0%, $color-bg-tertiary 100%);
   }
 
   &__image {
@@ -22,16 +50,17 @@
   }
 
   &:hover &__image {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgba($color-bg-dark, 0.85);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(102, 126, 234, 0.85) 100%);
     @include flex-center;
     opacity: 0;
     transition: opacity $transition-normal;
+    backdrop-filter: blur(5px);
   }
 
   &:hover &__overlay {
@@ -53,26 +82,36 @@
     @include button-base;
     gap: $spacing-2;
     font-size: $font-size-sm;
-    padding: $spacing-2 $spacing-4;
+    padding: $spacing-3 $spacing-4;
     text-decoration: none;
+    border-radius: $radius-lg;
+    font-weight: $font-weight-semibold;
+    transition: all $transition-fast;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     &--primary {
-      background-color: $color-primary;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: $color-text-inverse;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 
       &:hover {
-        background-color: $color-primary-dark;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
       }
     }
 
     &--secondary {
-      background-color: transparent;
+      background-color: rgba(255, 255, 255, 0.15);
       color: $color-text-inverse;
-      border: 1px solid $color-text-inverse;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
 
       &:hover {
-        background-color: $color-text-inverse;
-        color: $color-bg-dark;
+        background-color: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
       }
     }
 
@@ -91,6 +130,7 @@
     font-size: $font-size-xl;
     color: $color-text-primary;
     margin-bottom: $spacing-2;
+    font-weight: $font-weight-bold;
   }
 
   &__description {
@@ -99,6 +139,7 @@
     margin-bottom: $spacing-4;
     @include line-clamp(2);
     flex-grow: 1;
+    line-height: $line-height-relaxed;
   }
 
   &__technologies {
@@ -110,10 +151,18 @@
 
   &__tech-tag {
     @include small-text;
-    background-color: $color-bg-tertiary;
-    color: $color-text-secondary;
-    padding: $spacing-1 $spacing-2;
-    border-radius: $radius-md;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: $color-primary;
+    padding: $spacing-2 $spacing-3;
+    border-radius: $radius-full;
     font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all $transition-fast;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+      border-color: rgba(102, 126, 234, 0.4);
+    }
   }
 }

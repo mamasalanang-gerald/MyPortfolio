@@ -7,9 +7,11 @@
   left: 0;
   right: 0;
   z-index: $z-index-fixed;
-  background-color: rgba($color-bg-primary, 0.95);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
-  box-shadow: $shadow-sm;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all $transition-normal;
 }
 
 .nav-container {
@@ -26,12 +28,15 @@
   font-family: $font-family-heading;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
-  color: $color-primary;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-decoration: none;
-  transition: color $transition-fast;
+  transition: all $transition-fast;
 
   &:hover {
-    color: $color-primary-dark;
+    transform: scale(1.05);
   }
 }
 
@@ -55,25 +60,30 @@
   font-weight: $font-weight-medium;
   color: $color-text-secondary;
   text-decoration: none;
-  padding: $spacing-2 $spacing-1;
-  transition: color $transition-fast;
+  padding: $spacing-2 $spacing-3;
+  transition: all $transition-fast;
+  border-radius: $radius-lg;
   @include focus-ring;
 
   &:hover {
     color: $color-primary;
+    background-color: rgba(102, 126, 234, 0.05);
+    transform: translateY(-2px);
   }
 
   &.active {
     color: $color-primary;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    font-weight: $font-weight-semibold;
 
     &::after {
       content: '';
       position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
+      bottom: 0;
+      left: $spacing-3;
+      right: $spacing-3;
       height: 2px;
-      background-color: $color-primary;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
       border-radius: $radius-full;
     }
   }
@@ -92,10 +102,16 @@
   border: none;
   cursor: pointer;
   gap: 5px;
+  transition: all $transition-fast;
   @include focus-ring;
 
   @include desktop {
     display: none;
+  }
+
+  &:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+    border-radius: $radius-lg;
   }
 }
 
@@ -103,7 +119,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background-color: $color-text-primary;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   border-radius: $radius-full;
   transition: all $transition-fast;
 }
@@ -129,7 +145,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $color-bg-primary;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+  backdrop-filter: blur(10px);
   transform: translateX(100%);
   transition: transform $transition-normal;
   overflow-y: auto;
@@ -156,15 +173,18 @@
     font-size: $font-size-lg;
     padding: $spacing-4;
     border-radius: $radius-lg;
-    transition: background-color $transition-fast, color $transition-fast;
+    transition: all $transition-fast;
 
     &:hover {
-      background-color: $color-bg-secondary;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      color: $color-primary;
+      transform: translateX(4px);
     }
 
     &.active {
-      background-color: rgba($color-primary, 0.1);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
       color: $color-primary;
+      font-weight: $font-weight-semibold;
 
       &::after {
         display: none;

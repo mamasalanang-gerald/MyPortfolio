@@ -280,3 +280,147 @@
     transform: translateY(0);
   }
 }
+
+// Enhanced Animations for Modern UI
+
+// Gradient Animation
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Glow Effect
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+  }
+}
+
+// Shimmer Effect
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+// Float Animation
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// Rotate In Animation
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+// Stagger Animation for Lists
+@keyframes staggerFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Parallax Effect (used with JavaScript)
+@keyframes parallaxMove {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50px);
+  }
+}
+
+// Animation Classes for Enhanced Effects
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-rotate-in {
+  animation: rotateIn $transition-normal forwards;
+}
+
+.animate-stagger {
+  animation: staggerFadeInUp $transition-normal forwards;
+}
+
+// Stagger Delay Utilities for List Items
+@for $i from 1 through 10 {
+  .stagger-#{$i} {
+    animation-delay: #{$i * 50}ms;
+  }
+}
+
+// Enhanced Hover Effects
+@mixin hover-gradient-shift($gradient) {
+  background: $gradient;
+  background-size: 200% 200%;
+  transition: background-position $transition-normal;
+  
+  &:hover {
+    background-position: 100% 100%;
+  }
+}
+
+@mixin hover-shadow-lift {
+  transition: all $transition-fast;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@mixin hover-color-shift($from-color, $to-color) {
+  color: $from-color;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $to-color;
+  }
+}

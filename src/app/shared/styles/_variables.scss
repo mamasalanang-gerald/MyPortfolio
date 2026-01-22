@@ -1,9 +1,10 @@
 // Color Palette
-$color-primary: #2563eb;
-$color-primary-dark: #1d4ed8;
-$color-primary-light: #3b82f6;
-$color-secondary: #64748b;
-$color-accent: #06b6d4;
+$color-primary: #667eea;
+$color-primary-dark: #5568d3;
+$color-primary-light: #7c8ff5;
+$color-secondary: #764ba2;
+$color-accent: #4facfe;
+$color-accent-secondary: #00f2fe;
 
 $color-text-primary: #1e293b;
 $color-text-secondary: #475569;
@@ -21,6 +22,21 @@ $color-border-dark: #cbd5e1;
 $color-success: #22c55e;
 $color-error: #ef4444;
 $color-warning: #f59e0b;
+
+// Gradient Definitions
+$gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+$gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+$gradient-warm: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+$gradient-cool: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+
+// Glassmorphism Effects
+$glass-bg: rgba(255, 255, 255, 0.1);
+$glass-bg-dark: rgba(15, 23, 42, 0.1);
+$glass-border: rgba(255, 255, 255, 0.2);
+$glass-border-dark: rgba(15, 23, 42, 0.2);
+$glass-backdrop: blur(10px);
+$glass-backdrop-sm: blur(5px);
 
 // Typography
 $font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

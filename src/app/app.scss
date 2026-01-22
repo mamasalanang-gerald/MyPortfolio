@@ -1,5 +1,6 @@
 @use './shared/styles/variables' as *;
 @use './shared/styles/mixins' as *;
+@use './shared/styles/animations' as *;
 
 :host {
   display: block;
@@ -12,7 +13,7 @@
   top: -100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: $color-primary;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: $color-text-inverse;
   padding: $spacing-3 $spacing-6;
   border-radius: $radius-md;
@@ -20,10 +21,11 @@
   z-index: 9999;
   transition: top $transition-fast;
   text-decoration: none;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 
   &:focus {
     top: $spacing-4;
-    outline: 2px solid $color-primary-dark;
+    outline: 2px solid rgba(102, 126, 234, 0.5);
     outline-offset: 2px;
   }
 }
@@ -34,6 +36,7 @@
 
 .section {
   scroll-margin-top: 80px; // Account for fixed navigation height
+  transition: all $transition-normal;
   
   &#home {
     min-height: 100vh;
@@ -42,26 +45,62 @@
   &#about,
   &#projects,
   &#contact {
-    padding: $spacing-24 0;
+    padding: $spacing-24 $container-padding;
     
     @include tablet {
-      padding: $spacing-16 0;
+      padding: $spacing-16 $container-padding;
     }
     
     @include mobile {
-      padding: $spacing-12 0;
+      padding: $spacing-12 $container-padding;
     }
   }
 
   &#about {
-    background-color: $color-bg-secondary;
+    background: linear-gradient(135deg, $color-bg-secondary 0%, rgba(248, 250, 252, 0.5) 100%);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(79, 172, 254, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
   }
 
   &#projects {
-    background-color: $color-bg-primary;
+    background: linear-gradient(135deg, $color-bg-primary 0%, rgba(248, 250, 252, 0.3) 100%);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 80%, rgba(240, 147, 251, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
   }
 
   &#contact {
-    background-color: $color-bg-secondary;
+    background: linear-gradient(135deg, $color-bg-secondary 0%, rgba(248, 250, 252, 0.5) 100%);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
   }
 }

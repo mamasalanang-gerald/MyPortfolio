@@ -4,6 +4,17 @@
 
 This design document outlines the architecture and implementation approach for a personal portfolio website built with Angular. The portfolio will be a single-page application (SPA) with smooth scrolling between sections, responsive design, and modern aesthetics. The application leverages Angular's component-based architecture to create reusable, maintainable UI elements.
 
+### Enhanced UI/UX Features
+
+The portfolio will feature:
+- **Modern Visual Design**: Gradient backgrounds, glassmorphism effects, and refined color palette
+- **Rich Animations**: Scroll-triggered animations, parallax effects, and smooth micro-interactions
+- **Interactive Elements**: Hover effects, animated buttons, interactive project cards with reveal effects
+- **Enhanced Typography**: Better hierarchy, improved readability, and modern font pairing
+- **Improved Spacing**: Better visual breathing room and section separation
+- **Smooth Transitions**: Polished animations for all interactive elements
+- **Visual Feedback**: Clear hover states, loading states, and interactive feedback
+
 ## Architecture
 
 ### High-Level Architecture
@@ -375,6 +386,37 @@ export interface SocialLink {
 | Missing profile data | Display placeholder content with defaults |
 | Missing project data | Show "No projects available" message |
 | Image load failure | Display fallback placeholder image |
+
+## Visual Design System
+
+### Color Palette Enhancement
+
+The portfolio uses a modern, sophisticated color scheme with gradient support:
+
+```scss
+// Primary Gradient
+$gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+$gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+
+// Glassmorphism
+$glass-bg: rgba(255, 255, 255, 0.1);
+$glass-border: rgba(255, 255, 255, 0.2);
+$glass-backdrop: blur(10px);
+```
+
+### Typography Hierarchy
+
+- **Headings**: Bold, large sizes with gradient text effects
+- **Body Text**: Clear, readable with proper line-height
+- **Accents**: Smaller text with color emphasis for CTAs and highlights
+
+### Animation Principles
+
+1. **Entrance Animations**: Fade-in-up, scale-in effects on section visibility
+2. **Hover Effects**: Smooth scale, color transitions, shadow elevation
+3. **Scroll Effects**: Parallax, stagger animations for list items
+4. **Micro-interactions**: Button press feedback, loading states
 
 ## Testing Strategy
 
