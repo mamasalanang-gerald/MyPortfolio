@@ -6,6 +6,9 @@
       class="project-card__image"
       loading="lazy"
     />
+    <div *ngIf="isOngoing" class="project-card__badge">
+      <span class="project-card__badge-text">Ongoing Project</span>
+    </div>
     <div class="project-card__overlay" *ngIf="hasAnyLink">
       <div class="project-card__actions">
         <a 

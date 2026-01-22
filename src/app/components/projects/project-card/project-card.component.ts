@@ -23,4 +23,8 @@ export class ProjectCardComponent {
   get hasAnyLink(): boolean {
     return this.hasLiveUrl || this.hasSourceUrl;
   }
+
+  get isOngoing(): boolean {
+    return this.project.status === 'ongoing';
+  }
 }

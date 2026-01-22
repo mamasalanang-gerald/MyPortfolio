@@ -11,4 +11,5 @@ export interface Project {
   featured: boolean;
   category?: string;
   completedDate?: Date;
+  status?: 'ongoing' | 'completed';
 }

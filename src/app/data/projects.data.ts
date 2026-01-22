@@ -2,95 +2,94 @@ import { Project } from '../models/project.model';
 
 export const PROJECTS_DATA: Project[] = [
   {
-    id: 'ecommerce-platform',
-    title: 'E-Commerce Platform',
-    description: `A full-featured e-commerce platform built with Angular and Node.js. 
-Features include user authentication, product catalog, shopping cart, payment 
-integration with Stripe, order management, and an admin dashboard for inventory 
-and sales tracking.`,
-    shortDescription: 'Full-stack e-commerce solution with Angular and Node.js',
-    thumbnailUrl: 'assets/images/projects/ecommerce-thumb.jpg',
-    images: [
-      'assets/images/projects/ecommerce-1.jpg',
-      'assets/images/projects/ecommerce-2.jpg'
-    ],
-    technologies: ['Angular', 'Node.js', 'PostgreSQL', 'Stripe', 'Docker'],
-    liveUrl: 'https://ecommerce-demo.example.com',
-    sourceUrl: 'https://github.com/johndoe/ecommerce-platform',
+    id: 'pomodify',
+    title: 'Pomodify',
+    description: `A custom Pomodoro timer application with advanced features for productivity enhancement. 
+Built with Angular frontend, Spring Boot backend, and PostgreSQL database. Features include customizable 
+work/break intervals, task tracking, progress analytics, real-time notifications, and cloud synchronization. 
+Deployed on AWS with Docker containerization and automated CI/CD pipelines via GitHub Actions.`,
+    shortDescription: 'Advanced Pomodoro timer with full-stack architecture',
+    thumbnailUrl: 'assets/images/pomodify.jpg',
+    technologies: ['Angular', 'Spring Boot', 'PostgreSQL', 'Docker', 'AWS', 'GitHub Actions'],
+    liveUrl: 'https://pomodify.site',
     featured: true,
     category: 'Web Application',
-    completedDate: new Date('2025-01-15')
+    completedDate: new Date('2025-01-20')
   },
   {
-    id: 'task-management',
-    title: 'Task Management App',
-    description: `A collaborative task management application with real-time updates. 
-Built with React and Firebase, featuring drag-and-drop task organization, team 
-collaboration, deadline tracking, and notification system.`,
-    shortDescription: 'Real-time collaborative task manager with React',
-    thumbnailUrl: 'assets/images/projects/taskmanager-thumb.jpg',
-    technologies: ['React', 'Firebase', 'TypeScript', 'Material-UI'],
-    liveUrl: 'https://taskmanager-demo.example.com',
-    sourceUrl: 'https://github.com/johndoe/task-manager',
+    id: 'stackovercash',
+    title: 'StackOvercash',
+    description: `A comprehensive banking system built with vanilla PHP backend and HTML/CSS/JavaScript frontend. 
+Features include user account management, fund transfers, transaction history, balance inquiries, and secure 
+authentication. The application demonstrates full-stack development with clean separation of concerns. 
+Deployed on AWS with GitHub Actions for continuous integration and deployment.`,
+    shortDescription: 'Full-featured banking system with PHP and vanilla JavaScript',
+    thumbnailUrl: 'assets/images/stackovercash.jpg',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Git', 'GitHub Actions', 'AWS'],
+    liveUrl: 'https://www.youtube.com/watch?v=YT7I0XK5CX4',
     featured: true,
     category: 'Web Application',
-    completedDate: new Date('2024-11-20')
+    completedDate: new Date('2025-01-10')
   },
   {
-    id: 'weather-dashboard',
-    title: 'Weather Dashboard',
-    description: `A responsive weather dashboard that displays current conditions 
-and forecasts for multiple locations. Integrates with OpenWeatherMap API and 
-features interactive charts, location search, and weather alerts.`,
-    shortDescription: 'Interactive weather dashboard with forecasts',
-    thumbnailUrl: 'assets/images/projects/weather-thumb.jpg',
-    technologies: ['Angular', 'Chart.js', 'OpenWeatherMap API', 'SCSS'],
-    liveUrl: 'https://weather-demo.example.com',
-    featured: false,
-    category: 'Web Application',
-    completedDate: new Date('2024-09-10')
-  },
-  {
-    id: 'portfolio-template',
-    title: 'Portfolio Template',
-    description: `A customizable portfolio template for developers and designers. 
-Features smooth animations, responsive design, dark mode support, and easy 
-configuration through JSON files.`,
-    shortDescription: 'Customizable developer portfolio template',
-    thumbnailUrl: 'assets/images/projects/portfolio-thumb.jpg',
-    technologies: ['Angular', 'SCSS', 'TypeScript'],
-    sourceUrl: 'https://github.com/johndoe/portfolio-template',
+    id: 'intelliquiz',
+    title: 'IntelliQuiz',
+    description: `A real-time intranet-based quiz bee system designed for competitive learning environments. 
+Built with React TypeScript and Vite frontend, Spring Boot Java backend, featuring real-time question delivery, 
+live scoring, and instant result analytics. Includes Python automation scripts for quiz management and data processing. 
+Containerized with Docker and deployed with GitHub Actions CI/CD pipelines for seamless updates and scalability.`,
+    shortDescription: 'Real-time intranet quiz system with live scoring',
+    thumbnailUrl: 'assets/images/intelliquiz.jpg',
+    technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Spring Boot', 'Java', 'Docker', 'GitHub Actions', 'Python'],
     featured: true,
-    category: 'Template',
-    completedDate: new Date('2024-07-05')
-  },
-  {
-    id: 'api-documentation',
-    title: 'API Documentation Generator',
-    description: `A tool that automatically generates beautiful API documentation 
-from OpenAPI/Swagger specifications. Features include interactive API explorer, 
-code samples in multiple languages, and customizable themes.`,
-    shortDescription: 'Auto-generate API docs from OpenAPI specs',
-    thumbnailUrl: 'assets/images/projects/apidocs-thumb.jpg',
-    technologies: ['Node.js', 'Express', 'Handlebars', 'OpenAPI'],
-    sourceUrl: 'https://github.com/johndoe/api-doc-generator',
-    featured: false,
-    category: 'Developer Tool',
-    completedDate: new Date('2024-05-18')
-  },
-  {
-    id: 'chat-application',
-    title: 'Real-Time Chat App',
-    description: `A real-time chat application with support for private messages, 
-group chats, file sharing, and emoji reactions. Built with Socket.io for 
-real-time communication and MongoDB for message persistence.`,
-    shortDescription: 'Real-time chat with Socket.io and MongoDB',
-    thumbnailUrl: 'assets/images/projects/chat-thumb.jpg',
-    technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-    liveUrl: 'https://chat-demo.example.com',
-    sourceUrl: 'https://github.com/johndoe/chat-app',
-    featured: false,
     category: 'Web Application',
-    completedDate: new Date('2024-03-22')
+    completedDate: new Date('2025-01-25'),
+    status: 'ongoing'
+  },
+  {
+    id: 'mentors-society',
+    title: 'Mentors\' Society Organization Management System',
+    description: `A comprehensive organization management system designed for the Mentors' Society. 
+Features include event management, inventory tracking, scheduling management, file management, and member administration. 
+Built with Vue.js and Vite frontend with Tailwind CSS styling, Laravel PHP backend, and MySQL database. 
+Includes Node.js/npm tooling, Docker containerization, and Composer for dependency management.`,
+    shortDescription: 'Full-featured organization management system with event and inventory tracking',
+    thumbnailUrl: 'assets/images/mentors.png',
+    technologies: ['Vue.js', 'Vite', 'Tailwind CSS', 'Laravel', 'PHP', 'MySQL', 'Node.js', 'npm', 'Docker', 'Composer', 'Git'],
+    sourceUrl: 'https://github.com/victorioso-daniel/mentors-society',
+    featured: true,
+    category: 'Web Application',
+    completedDate: new Date('2025-01-18')
+  },
+  {
+    id: 'focusly',
+    title: 'Focusly',
+    description: `A smart task management and productivity app with integrated Pomodoro timer for Android. 
+Built with Kotlin and AndroidX, featuring Material Design UI with ConstraintLayout. Includes Room ORM for local data persistence, 
+Google Sign-In authentication, and comprehensive testing with JUnit 4 and Espresso. Leverages Kotlin Coroutines for async operations, 
+ViewModel for lifecycle management, and WorkManager for background tasks.`,
+    shortDescription: 'Smart task management and productivity app with Pomodoro timer',
+    thumbnailUrl: 'assets/images/focuslyv2.png',
+    technologies: ['Kotlin', 'AndroidX', 'Material Design', 'Room ORM', 'SQLite', 'Kotlin Coroutines', 'ViewModel', 'WorkManager', 'Google Sign-In', 'JUnit 4', 'Espresso'],
+    sourceUrl: 'https://github.com/piadozo-edriane/focusly-group-awawak',
+    featured: true,
+    category: 'Mobile Application',
+    completedDate: new Date('2025-01-22')
+  },
+  {
+    id: 'enrollment-management-system',
+    title: 'Enrollment Management System',
+    description: `A comprehensive enrollment management system designed for academic institutions. 
+Built with HTML, CSS, and JavaScript frontend with PHP backend and MySQL database. Features role-based access control (RBAC), 
+MVC-style architecture, secure session-based authentication with bcrypt password hashing, and CSRF protection. 
+Includes PDF generation capabilities with FPDF library. Deployed on XAMPP with Apache server.`,
+    shortDescription: 'Academic enrollment system with role-based access control',
+    thumbnailUrl: 'assets/images/dba.png',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'FPDF', 'bcrypt', 'CSRF Protection', 'Session Auth', 'XAMPP', 'Apache'],
+    liveUrl: 'https://youtu.be/TKFGGFvKQAM?si=dEaV2U8FGOjapnps',
+    sourceUrl: 'https://github.com/mamasalanang-gerald/Enrollment-Management-System',
+    featured: true,
+    category: 'Web Application',
+    completedDate: new Date('2025-01-19')
   }
 ];

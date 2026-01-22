@@ -1,7 +1,7 @@
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject, Observable, fromEvent } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 export interface Section {
   id: string;
@@ -20,10 +20,13 @@ export class ScrollService {
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' }
   ];
+  private observer?: IntersectionObserver;
+  private observerInitialized = false;
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
-      this.initScrollListener();
+      // Delay initialization to ensure DOM is ready
+      setTimeout(() => this.initIntersectionObserver(), 100);
     }
   }
 
@@ -38,6 +41,10 @@ export class ScrollService {
 
     const element = document.getElementById(sectionId);
     if (element) {
+      // Update active section immediately
+      this.activeSectionSubject.next(sectionId);
+      
+      // Then scroll to the section
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
@@ -70,63 +77,69 @@ export class ScrollService {
    * Exported for testing purposes
    */
   calculateActiveSection(scrollPosition: number, sectionPositions: Map<string, { top: number; bottom: number }>): string {
-    const viewportHeight = isPlatformBrowser(this.platformId) ? window.innerHeight : 800;
-    const threshold = viewportHeight * 0.3; // 30% of viewport height
+    const navHeight = 80;
+    const triggerPoint = scrollPosition + navHeight + 50;
 
+    // Iterate through sections in order
     for (const section of this.sections) {
       const position = sectionPositions.get(section.id);
       if (position) {
-        // Check if the section is in the viewport
-        const sectionTop = position.top - threshold;
-        const sectionBottom = position.bottom - threshold;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        // Check if trigger point is within this section
+        if (triggerPoint >= position.top && triggerPoint < position.bottom) {
           return section.id;
         }
       }
     }
 
-    // Default to first section if no match
-    return this.sections[0]?.id || 'home';
+    // Default to home if no match found
+    return 'home';
   }
 
-  private initScrollListener(): void {
-    fromEvent(window, 'scroll')
-      .pipe(debounceTime(50))
-      .subscribe(() => {
-        this.updateActiveSection();
-      });
-
-    // Initial check
-    this.updateActiveSection();
-  }
-
-  private updateActiveSection(): void {
-    if (!isPlatformBrowser(this.platformId)) {
+  private initIntersectionObserver(): void {
+    if (this.observerInitialized) {
       return;
     }
 
-    const scrollPosition = window.scrollY;
-    const sectionPositions = this.getSectionPositions();
-    const activeSection = this.calculateActiveSection(scrollPosition, sectionPositions);
-    
-    this.activeSectionSubject.next(activeSection);
-  }
+    this.observer = new IntersectionObserver((entries) => {
+      // Find the section that is most visible
+      let mostVisibleSection = 'home';
+      let maxVisibility = 0;
 
-  private getSectionPositions(): Map<string, { top: number; bottom: number }> {
-    const positions = new Map<string, { top: number; bottom: number }>();
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const visibility = entry.intersectionRatio;
+          if (visibility > maxVisibility) {
+            maxVisibility = visibility;
+            mostVisibleSection = entry.target.id;
+          }
+        }
+      });
 
+      // If any section is intersecting, update active section
+      if (maxVisibility > 0) {
+        this.activeSectionSubject.next(mostVisibleSection);
+      }
+    }, {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px', // Trigger when section is in the middle of viewport
+      threshold: 0
+    });
+
+    // Observe all sections
     for (const section of this.sections) {
       const element = document.getElementById(section.id);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        positions.set(section.id, {
-          top: rect.top + window.scrollY,
-          bottom: rect.bottom + window.scrollY
-        });
+      if (element && this.observer) {
+        this.observer.observe(element);
       }
     }
 
-    return positions;
+    this.observerInitialized = true;
+  }
+
+  ngOnDestroy(): void {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 }
+

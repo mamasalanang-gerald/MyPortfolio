@@ -13,7 +13,7 @@
     color: $color-text-primary;
     text-align: center;
     margin-bottom: $spacing-4;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -57,15 +57,16 @@
     height: 100%;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.15);
     border-radius: $radius-2xl;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
     transition: all $transition-normal;
+    @include hover-lift-glow;
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
-      border-color: rgba(102, 126, 234, 0.2);
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+      border-color: rgba(124, 58, 237, 0.3);
     }
   }
 
@@ -117,6 +118,13 @@
 
   &__social-item {
     flex-shrink: 0;
+    animation: fadeInUp 0.5s ease-out both;
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.1 * $i + 0.4}s;
+      }
+    }
   }
 
   &__social-link {
@@ -124,22 +132,23 @@
     align-items: center;
     gap: $spacing-2;
     padding: $spacing-2 $spacing-4;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
     color: $color-primary;
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(124, 58, 237, 0.2);
     border-radius: $radius-lg;
     text-decoration: none;
     font-size: $font-size-sm;
     font-weight: $font-weight-medium;
     transition: all $transition-fast;
     @include focus-ring;
+    @include hover-lift-glow;
 
     &:hover {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
       color: $color-text-inverse;
       border-color: transparent;
       transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
     }
 
     &[data-platform="github"]:hover {
@@ -176,14 +185,14 @@
     padding: $spacing-8;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.15);
     border-radius: $radius-2xl;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
     transition: all $transition-normal;
 
     &:hover {
-      box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
-      border-color: rgba(102, 126, 234, 0.2);
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+      border-color: rgba(124, 58, 237, 0.3);
     }
   }
 
@@ -198,6 +207,7 @@
     color: $color-success;
     margin-bottom: $spacing-6;
     @include body-text;
+    animation: slideDown 0.3s ease-out;
   }
 
   &__error {
@@ -211,6 +221,7 @@
     color: $color-error;
     margin-bottom: $spacing-6;
     @include body-text;
+    animation: shake 0.5s ease-in-out;
   }
 
   &__success-icon {
@@ -224,6 +235,7 @@
     border-radius: $radius-full;
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
+    animation: checkmark 0.6s ease-out;
   }
 
   &__error-icon {
@@ -259,7 +271,7 @@
     font-size: $font-size-base;
     color: $color-text-primary;
     background: rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(102, 126, 234, 0.2);
+    border: 2px solid rgba(124, 58, 237, 0.2);
     border-radius: $radius-lg;
     transition: all $transition-fast;
     backdrop-filter: blur(5px);
@@ -272,11 +284,12 @@
     &:focus {
       border-color: $color-primary;
       background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
     }
 
     &--error {
       border-color: $color-error;
+      animation: shake 0.3s ease-in-out;
 
       &:focus {
         border-color: $color-error;
@@ -295,6 +308,7 @@
     color: $color-error;
     margin-top: $spacing-2;
     @include small-text;
+    animation: slideDown 0.3s ease-out;
   }
 
   &__form-submit {
@@ -302,10 +316,105 @@
     @include button-primary;
     padding: $spacing-4 $spacing-6;
     font-size: $font-size-lg;
+    @include hover-lift-glow;
 
     &:disabled {
       opacity: 0.6;
       cursor: not-allowed;
     }
+
+    &.loading {
+      @include loading-state;
+    }
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

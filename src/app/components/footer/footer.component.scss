@@ -5,6 +5,7 @@
   background-color: $color-bg-dark;
   color: $color-text-inverse;
   padding: $spacing-16 0 $spacing-8;
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .footer-container {
@@ -29,6 +30,7 @@
 
 .footer-brand {
   max-width: 300px;
+  animation: fadeInUp 0.5s ease-out 0.1s both;
 }
 
 .footer-logo {
@@ -41,6 +43,7 @@
   margin-bottom: $spacing-3;
   transition: color $transition-fast;
   @include focus-ring;
+  @include hover-color-shift($color-text-inverse, $color-primary-light);
 
   &:hover {
     color: $color-primary-light;
@@ -51,6 +54,14 @@
   @include small-text;
   color: $color-text-muted;
   margin: 0;
+}
+
+.footer-nav {
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.footer-social {
+  animation: fadeInUp 0.5s ease-out 0.3s both;
 }
 
 .footer-nav-title {
@@ -77,22 +88,32 @@
   color: $color-text-muted;
   text-decoration: none;
   padding: $spacing-1 0;
-  transition: color $transition-fast;
+  transition: all $transition-fast;
   @include focus-ring;
+  @include hover-color-shift($color-text-muted, $color-primary-light);
 
   &:hover {
     color: $color-primary-light;
+    transform: translateY(-2px);
   }
 }
 
 .footer-links li,
 .social-links li {
   margin-bottom: $spacing-2;
+  animation: fadeInUp 0.4s ease-out both;
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{0.05 * $i + 0.3}s;
+    }
+  }
 }
 
 .footer-bottom {
   padding-top: $spacing-8;
   text-align: center;
+  animation: fadeIn 0.6s ease-out 0.4s both;
 }
 
 .copyright {
@@ -119,5 +140,25 @@
   .footer-nav,
   .footer-social {
     text-align: center;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

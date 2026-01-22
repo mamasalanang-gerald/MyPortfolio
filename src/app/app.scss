@@ -7,13 +7,24 @@
   min-height: 100vh;
 }
 
+// Reduce motion support for accessibility
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 // Skip to content link for accessibility
 .skip-to-content {
   position: absolute;
   top: -100%;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
   color: $color-text-inverse;
   padding: $spacing-3 $spacing-6;
   border-radius: $radius-md;
@@ -21,11 +32,11 @@
   z-index: 9999;
   transition: top $transition-fast;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
 
   &:focus {
     top: $spacing-4;
-    outline: 2px solid rgba(102, 126, 234, 0.5);
+    outline: 2px solid rgba(124, 58, 237, 0.6);
     outline-offset: 2px;
   }
 }
@@ -67,7 +78,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(79, 172, 254, 0.05) 0%, transparent 50%);
+      background: radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
       pointer-events: none;
     }
   }
@@ -83,7 +94,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 20% 80%, rgba(240, 147, 251, 0.05) 0%, transparent 50%);
+      background: radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
       pointer-events: none;
     }
   }
@@ -99,8 +110,129 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 50%);
+      background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
       pointer-events: none;
     }
   }
+}
+
+// Mobile-specific optimizations
+@include mobile {
+  // Reduce animation complexity on mobile
+  .hero {
+    &::before {
+      animation: none;
+    }
+  }
+
+  // Optimize button sizing for touch
+  button,
+  a[role="button"],
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: $spacing-3 $spacing-4;
+  }
+
+  // Improve touch target spacing
+  button + button,
+  a[role="button"] + a[role="button"] {
+    margin-left: $spacing-2;
+  }
+
+  // Optimize form inputs for mobile
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+    font-size: 16px; // Prevents zoom on iOS
+    padding: $spacing-3 $spacing-4;
+  }
+
+  // Reduce parallax intensity on mobile
+  [appScrollAnimate][parallax] {
+    --parallax-speed: 0.2;
+  }
+
+  // Simplify animations on mobile
+  .animate-gradient {
+    animation: none;
+  }
+
+  // Optimize navigation for mobile
+  .navigation {
+    height: 56px;
+  }
+
+  // Improve mobile menu performance
+  .mobile-nav {
+    will-change: transform;
+  }
+}
+
+// Tablet optimizations
+@include tablet {
+  // Moderate animation complexity
+  .hero {
+    &::before {
+      animation: float 25s ease-in-out infinite;
+    }
+  }
+
+  // Optimize spacing for tablet
+  button,
+  a[role="button"],
+  .btn {
+    min-height: 40px;
+    min-width: 40px;
+  }
+}
+
+// Desktop optimizations
+@include desktop {
+  // Full animation complexity on desktop
+  .hero {
+    &::before {
+      animation: float 20s ease-in-out infinite;
+    }
+  }
+
+  // Enable parallax on desktop
+  [appScrollAnimate][parallax] {
+    --parallax-speed: 0.5;
+  }
+}
+
+// Performance optimizations
+* {
+  // Use GPU acceleration for transforms
+  will-change: auto;
+  
+  &.animate-fade-in,
+  &.animate-fade-in-up,
+  &.animate-fade-in-down,
+  &.animate-fade-in-left,
+  &.animate-fade-in-right,
+  &.animate-scale-in,
+  &.animate-slide-in-up,
+  &.animate-slide-down,
+  &.animate-slide-up {
+    will-change: opacity, transform;
+  }
+}
+
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Optimize scrolling performance
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Passive event listeners for scroll performance
+.section {
+  touch-action: auto;
 }

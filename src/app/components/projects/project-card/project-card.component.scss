@@ -11,6 +11,7 @@
   transition: all $transition-normal;
   position: relative;
   overflow: hidden;
+  @include hover-lift-glow;
 
   &::before {
     content: '';
@@ -19,7 +20,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
     opacity: 0;
     transition: opacity $transition-normal;
     pointer-events: none;
@@ -27,8 +28,8 @@
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-    border-color: rgba(102, 126, 234, 0.2);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+    border-color: rgba(124, 58, 237, 0.3);
 
     &::before {
       opacity: 1;
@@ -53,10 +54,39 @@
     transform: scale(1.08);
   }
 
+  &__badge {
+    position: absolute;
+    top: $spacing-3;
+    right: $spacing-3;
+    background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+    padding: $spacing-2 $spacing-3;
+    border-radius: $radius-full;
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+    transition: all $transition-normal;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  }
+
+  &:hover &__badge {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  &__badge-text {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-text-inverse;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(102, 126, 234, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(124, 58, 237, 0.85) 100%);
     @include flex-center;
     opacity: 0;
     transition: opacity $transition-normal;
@@ -90,15 +120,24 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    animation: scaleIn 0.3s ease-out forwards;
+    opacity: 0;
+
+    @for $i from 1 through 2 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 50}ms;
+      }
+    }
 
     &--primary {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
       color: $color-text-inverse;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+      @include hover-lift-glow;
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
       }
     }
 
@@ -107,6 +146,7 @@
       color: $color-text-inverse;
       border: 1.5px solid rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(10px);
+      @include hover-lift-glow(rgba(255, 255, 255, 0.5));
 
       &:hover {
         background-color: rgba(255, 255, 255, 0.25);
@@ -116,6 +156,10 @@
     }
 
     @include focus-ring;
+  }
+
+  &:hover &__action {
+    opacity: 1;
   }
 
   &__content {
@@ -131,6 +175,11 @@
     color: $color-text-primary;
     margin-bottom: $spacing-2;
     font-weight: $font-weight-bold;
+    transition: all $transition-fast;
+  }
+
+  &:hover &__title {
+    color: $color-primary;
   }
 
   &__description {
@@ -151,18 +200,30 @@
 
   &__tech-tag {
     @include small-text;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
     color: $color-primary;
     padding: $spacing-2 $spacing-3;
     border-radius: $radius-full;
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(124, 58, 237, 0.2);
     transition: all $transition-fast;
 
     &:hover {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-      border-color: rgba(102, 126, 234, 0.4);
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.25) 0%, rgba(236, 72, 153, 0.2) 100%);
+      border-color: rgba(124, 58, 237, 0.4);
+      transform: scale(1.05);
     }
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

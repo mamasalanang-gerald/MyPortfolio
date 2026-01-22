@@ -228,30 +228,7 @@
   animation-delay: 500ms;
 }
 
-// Hover Transition Mixins
-@mixin hover-lift {
-  transition: transform $transition-fast;
-  
-  &:hover {
-    transform: translateY(-4px);
-  }
-}
 
-@mixin hover-scale {
-  transition: transform $transition-fast;
-  
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-
-@mixin hover-glow($color: $color-primary) {
-  transition: box-shadow $transition-fast;
-  
-  &:hover {
-    box-shadow: 0 0 20px rgba($color, 0.3);
-  }
-}
 
 // Scroll-triggered animation using CSS animation-timeline (with fallback)
 // For browsers that don't support animation-timeline, elements will be visible immediately
@@ -299,10 +276,10 @@
 // Glow Effect
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 5px rgba(124, 58, 237, 0.5), 0 0 10px rgba(236, 72, 153, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.8), 0 0 30px rgba(236, 72, 153, 0.6);
   }
 }
 
@@ -424,3 +401,285 @@
     color: $to-color;
   }
 }
+
+// Advanced Micro-interaction Animations
+
+// Shake Animation for Errors
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+// Checkmark Animation for Success
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 50;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+// Pulse Animation for Loading
+@keyframes loadingPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// Breathing Animation
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Slide Down Animation
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Slide Up Animation
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Zoom In Animation
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Zoom Out Animation
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+// Flip Animation
+@keyframes flip {
+  from {
+    transform: perspective(400px) rotateY(0);
+  }
+  to {
+    transform: perspective(400px) rotateY(360deg);
+  }
+}
+
+// Swing Animation
+@keyframes swing {
+  20% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+// Wobble Animation
+@keyframes wobble {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+  30% {
+    transform: translateX(3px) rotate(3deg);
+  }
+  45% {
+    transform: translateX(-3px) rotate(-3deg);
+  }
+  60% {
+    transform: translateX(2px) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-1px) rotate(-1deg);
+  }
+}
+
+// Heartbeat Animation
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+// Jello Animation
+@keyframes jello {
+  0%, 11.1%, 100% {
+    transform: skewX(0deg) skewY(0deg);
+  }
+  22.2% {
+    transform: skewX(-12.5deg) skewY(-12.5deg);
+  }
+  33.3% {
+    transform: skewX(6.25deg) skewY(6.25deg);
+  }
+  44.4% {
+    transform: skewX(-3.125deg) skewY(-3.125deg);
+  }
+  55.5% {
+    transform: skewX(1.5625deg) skewY(1.5625deg);
+  }
+  66.6% {
+    transform: skewX(-0.78125deg) skewY(-0.78125deg);
+  }
+  77.7% {
+    transform: skewX(0.390625deg) skewY(0.390625deg);
+  }
+  88.8% {
+    transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+  }
+}
+
+// Animation Classes for Advanced Effects
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-checkmark {
+  animation: checkmark 0.6s ease-out forwards;
+}
+
+.animate-loading-pulse {
+  animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+.animate-breathing {
+  animation: breathing 2s ease-in-out infinite;
+}
+
+.animate-slide-down {
+  animation: slideDown $transition-normal forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp $transition-normal forwards;
+}
+
+.animate-zoom-in {
+  animation: zoomIn $transition-normal forwards;
+}
+
+.animate-zoom-out {
+  animation: zoomOut $transition-normal forwards;
+}
+
+.animate-flip {
+  animation: flip 0.6s ease-in-out;
+}
+
+.animate-swing {
+  animation: swing 0.5s ease-in-out;
+}
+
+.animate-wobble {
+  animation: wobble 0.8s ease-in-out;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.3s ease-in-out infinite;
+}
+
+.animate-jello {
+  animation: jello 0.9s ease-in-out;
+}
+
+// Parallax Scroll Animation
+@mixin parallax-scroll($speed: 0.5) {
+  transform: translateY(calc(var(--scroll-y, 0px) * #{$speed}));
+}
+
+// Stagger Animation Utilities
+@mixin stagger-animation($animation, $duration, $count: 5) {
+  @for $i from 1 through $count {
+    &:nth-child(#{$i}) {
+      animation: $animation $duration ease-out forwards;
+      animation-delay: #{($i - 1) * 50}ms;
+    }
+  }
+}
+
+// Focus Ring Animation
+@mixin focus-ring-animate {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+  transition: box-shadow $transition-fast;
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
+  }
+}
+
+// Smooth Transition Mixin
+@mixin smooth-transition($properties: all, $duration: $transition-normal) {
+  transition: $properties $duration ease-in-out;
+}
+
+

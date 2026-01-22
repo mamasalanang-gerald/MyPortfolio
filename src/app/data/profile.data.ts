@@ -25,6 +25,7 @@ I'm committed to continuous learning and hands-on experience in infrastructure a
     { name: 'Git', category: 'tools', icon: 'git' },
     { name: 'Docker', category: 'tools', icon: 'docker' },
     { name: 'AWS', category: 'tools', icon: 'aws' },
+    { name: 'Linux', category: 'tools', icon: 'linux' },
     { name: 'Figma', category: 'other', icon: 'figma' },
     { name: 'Agile/Scrum', category: 'other', icon: 'agile' }
   ],
